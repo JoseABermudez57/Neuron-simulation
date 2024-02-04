@@ -2,6 +2,7 @@ from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Label, Button, PhotoImage, filedialog
 from PIL import Image, ImageTk
 from operations.neuron import open_csv as start
+from results import SecondWindow
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"..\views\assets\frame0")
@@ -172,7 +173,10 @@ def search_csv():
 def do_operations():
     if csv_opened:
         Label(window, image=image_tk_correct).place(x=330, y=305)
-        start(csv_route, entry_2.get(), entry_1.get())
+        w, e = start(csv_route, entry_1.get(), entry_3.get(), entry_2.get())
+        print(f"valores de w \n {w}")
+        print(f"valores de e \n {e}")
+        SecondWindow(window, e)
     else:
         Label(window, image=image_tk_incorrect).place(x=330, y=310)
 
