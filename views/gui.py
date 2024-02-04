@@ -17,7 +17,7 @@ def relative_to_assets(path: str) -> Path:
 
 
 window = Tk()
-
+window.title("Neuron Simulation")
 window.geometry("500x550")
 window.configure(bg = "#E5E5E5")
 
