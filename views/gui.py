@@ -17,15 +17,15 @@ def relative_to_assets(path: str) -> Path:
 
 
 window = Tk()
-window.title("Neuron Simulation")
-window.geometry("500x500")
+
+window.geometry("500x550")
 window.configure(bg = "#E5E5E5")
 
 
 canvas = Canvas(
     window,
     bg = "#E5E5E5",
-    height = 500,
+    height = 550,
     width = 500,
     bd = 0,
     highlightthickness = 0,
@@ -44,63 +44,107 @@ image_1 = canvas.create_image(
 image_image_2 = PhotoImage(
     file=relative_to_assets("image_2.png"))
 image_2 = canvas.create_image(
-    208.0,
-    202.0,
+    147.0,
+    201.0,
     image=image_image_2
 )
 
 image_image_3 = PhotoImage(
     file=relative_to_assets("image_3.png"))
 image_3 = canvas.create_image(
-    449.0,
-    204.0,
+    209.0,
+    255.0,
     image=image_image_3
 )
 
 image_image_4 = PhotoImage(
     file=relative_to_assets("image_4.png"))
 image_4 = canvas.create_image(
-    447.0,
+    328.0,
     202.0,
     image=image_image_4
-)
-
-entry_image_1 = PhotoImage(
-    file=relative_to_assets("entry_1.png"))
-entry_bg_1 = canvas.create_image(
-    448.5,
-    202.5,
-    image=entry_image_1
-)
-entry_1 = Entry(
-    bd=0,
-    bg="#EEEEEE",
-    fg="#000716",
-    highlightthickness=0,
-    font=('Comic Sans MS', 12, 'normal')
-)
-entry_1.place(
-    x=421.0,
-    y=192.0,
-    width=55.0,
-    height=19.0
 )
 
 image_image_5 = PhotoImage(
     file=relative_to_assets("image_5.png"))
 image_5 = canvas.create_image(
+    453.0,
     255.0,
-    392.0,
     image=image_image_5
 )
 
 image_image_6 = PhotoImage(
     file=relative_to_assets("image_6.png"))
 image_6 = canvas.create_image(
-    250.0,
-    387.0,
+    326.0,
+    200.0,
     image=image_image_6
 )
+
+image_image_7 = PhotoImage(
+    file=relative_to_assets("image_7.png"))
+image_7 = canvas.create_image(
+    451.0,
+    253.0,
+    image=image_image_7
+)
+
+entry_image_1 = PhotoImage(
+    file=relative_to_assets("entry_1.png"))
+entry_bg_1 = canvas.create_image(
+    327.5,
+    200.5,
+    image=entry_image_1
+)
+entry_1 = Entry(
+    bd=0,
+    bg="#EEEEEE",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_1.place(
+    x=300.0,
+    y=190.0,
+    width=55.0,
+    height=19.0
+)
+
+entry_image_2 = PhotoImage(
+    file=relative_to_assets("entry_2.png"))
+entry_bg_2 = canvas.create_image(
+    452.5,
+    253.5,
+    image=entry_image_2
+)
+entry_2 = Entry(
+    bd=0,
+    bg="#EEEEEE",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_2.place(
+    x=425.0,
+    y=243.0,
+    width=55.0,
+    height=19.0
+)
+
+image_image_8 = PhotoImage(
+    file=relative_to_assets("image_8.png"))
+image_8 = canvas.create_image(
+    253.0,
+    451.0,
+    image=image_image_8
+)
+
+image_image_9 = PhotoImage(
+    file=relative_to_assets("image_9.png"))
+image_9 = canvas.create_image(
+    248.0,
+    447.0,
+    image=image_image_9
+)
+
 
 image_correct = Image.open(Path(r"..\views\assets\frame0\correct.png")).resize((27, 27))
 image_tk_correct = ImageTk.PhotoImage(image_correct)
@@ -130,7 +174,7 @@ def do_operations():
         Label(window, image=image_tk_correct).place(x=330, y=305)
         start(csv_route, entry_2.get(), entry_1.get())
     else:
-        Label(window, image=image_tk_incorrect).place(x=330, y=258)
+        Label(window, image=image_tk_incorrect).place(x=330, y=310)
 
 
 button_image_1 = PhotoImage(
@@ -144,7 +188,7 @@ button_1 = Button(
 )
 button_1.place(
     x=175.0,
-    y=250.0,
+    y=302.0,
     width=151.0,
     height=47.0
 )
@@ -165,60 +209,80 @@ button_2.place(
     height=40.0
 )
 
-image_image_7 = PhotoImage(
-    file=relative_to_assets("image_7.png"))
-image_7 = canvas.create_image(
-    250.0,
-    28.0,
-    image=image_image_7
-)
-
-image_image_8 = PhotoImage(
-    file=relative_to_assets("image_8.png"))
-image_8 = canvas.create_image(
-    161.0,
-    144.0,
-    image=image_image_8
-)
-
-image_image_9 = PhotoImage(
-    file=relative_to_assets("image_9.png"))
-image_9 = canvas.create_image(
-    378.0,
-    146.0,
-    image=image_image_9
-)
-
 image_image_10 = PhotoImage(
     file=relative_to_assets("image_10.png"))
 image_10 = canvas.create_image(
-    377.0,
-    143.0,
+    250.0,
+    28.0,
     image=image_image_10
 )
 
-entry_image_2 = PhotoImage(
-    file=relative_to_assets("entry_2.png"))
-entry_bg_2 = canvas.create_image(
+image_image_11 = PhotoImage(
+    file=relative_to_assets("image_11.png"))
+image_11 = canvas.create_image(
+    161.0,
+    144.0,
+    image=image_image_11
+)
+
+image_image_12 = PhotoImage(
+    file=relative_to_assets("image_12.png"))
+image_12 = canvas.create_image(
+    378.0,
+    146.0,
+    image=image_image_12
+)
+
+image_image_13 = PhotoImage(
+    file=relative_to_assets("image_13.png"))
+image_13 = canvas.create_image(
+    377.0,
+    143.0,
+    image=image_image_13
+)
+
+entry_image_3 = PhotoImage(
+    file=relative_to_assets("entry_3.png"))
+entry_bg_3 = canvas.create_image(
     380.5,
     143.5,
-    image=entry_image_2
+    image=entry_image_3
 )
-entry_2 = Entry(
+entry_3 = Entry(
     bd=0,
     bg="#EEEEEE",
     fg="#000716",
-    highlightthickness=0,
-    font=('Comic Sans MS', 12, 'normal')
+    highlightthickness=0
 )
-entry_2.place(
+entry_3.place(
     x=340.0,
     y=132.0,
     width=81.0,
     height=21.0
 )
 
-if __name__ == '__main__':
-    window.resizable(False, False)
-    window.mainloop()
+image_image_14 = PhotoImage(
+    file=relative_to_assets("image_14.png"))
+image_14 = canvas.create_image(
+    244.0,
+    400.0,
+    image=image_image_14
+)
 
+image_image_15 = PhotoImage(
+    file=relative_to_assets("image_15.png"))
+image_15 = canvas.create_image(
+    113.0,
+    446.0,
+    image=image_image_15
+)
+
+image_image_16 = PhotoImage(
+    file=relative_to_assets("image_16.png"))
+image_16 = canvas.create_image(
+    120.0,
+    474.0,
+    image=image_image_16
+)
+window.resizable(False, False)
+window.mainloop()
