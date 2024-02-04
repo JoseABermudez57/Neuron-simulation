@@ -1,2 +1,3 @@
 .idea/
 csv/*
+operations/__pycache__/
