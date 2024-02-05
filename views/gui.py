@@ -1,5 +1,5 @@
 from pathlib import Path
-from tkinter import Tk, Canvas, Entry, Label, Button, PhotoImage, filedialog
+from tkinter import Tk, Canvas, Entry, Label, Button, PhotoImage, filedialog, Frame
 from PIL import Image, ImageTk
 from operations.neuron import open_csv as start
 from results import SecondWindow
@@ -20,20 +20,19 @@ def relative_to_assets(path: str) -> Path:
 window = Tk()
 window.title("Neuron Simulation")
 window.geometry("500x550")
-window.configure(bg = "#E5E5E5")
-
+window.configure(bg="#E5E5E5")
 
 canvas = Canvas(
     window,
-    bg = "#E5E5E5",
-    height = 550,
-    width = 500,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
+    bg="#E5E5E5",
+    height=550,
+    width=500,
+    bd=0,
+    highlightthickness=0,
+    relief="ridge"
 )
 
-canvas.place(x = 0, y = 0)
+canvas.place(x=0, y=0)
 image_image_1 = PhotoImage(
     file=relative_to_assets("image_1.png"))
 image_1 = canvas.create_image(
@@ -101,7 +100,8 @@ entry_1 = Entry(
     bd=0,
     bg="#EEEEEE",
     fg="#000716",
-    highlightthickness=0
+    highlightthickness=0,
+    font=('Comic Sans MS', 12, 'normal')
 )
 entry_1.place(
     x=300.0,
@@ -121,7 +121,8 @@ entry_2 = Entry(
     bd=0,
     bg="#EEEEEE",
     fg="#000716",
-    highlightthickness=0
+    highlightthickness=0,
+    font=('Comic Sans MS', 12, 'normal')
 )
 entry_2.place(
     x=425.0,
@@ -146,13 +147,14 @@ image_9 = canvas.create_image(
     image=image_image_9
 )
 
-
 image_correct = Image.open(Path(r"..\views\assets\frame0\correct.png")).resize((27, 27))
 image_tk_correct = ImageTk.PhotoImage(image_correct)
 
-
 image_incorrect = Image.open(Path(r"..\views\assets\frame0\error.png")).resize((27, 27))
 image_tk_incorrect = ImageTk.PhotoImage(image_incorrect)
+
+image_results = Image.open(Path(r"..\views\assets\frame0\results_template.png")).resize((315, 105))
+image_tk_results = ImageTk.PhotoImage(image_results)
 
 
 def search_csv():
@@ -172,11 +174,22 @@ def search_csv():
 
 def do_operations():
     if csv_opened:
-        Label(window, image=image_tk_correct).place(x=330, y=305)
-        w, e = start(csv_route, entry_1.get(), entry_3.get(), entry_2.get())
-        print(f"valores de w \n {w}")
-        print(f"valores de e \n {e}")
-        SecondWindow(window, e)
+        eta_value = entry_3.get() if entry_3.get() != '' else 0
+        epochs = entry_2.get() if entry_2.get() != '' else 0
+        if (float(eta_value) > 0) and (float(epochs) > 0):
+            Label(window, image=image_tk_correct).place(x=330, y=305)
+            tolerance = entry_1.get() if entry_1.get() != '' else 0
+            w, e = start(csv_route, entry_1.get(), entry_3.get(), entry_2.get())
+            w = [[round(value, 4) for value in sub_w[0]] for sub_w in w]
+            Label(window, image=image_tk_results).place(x=86, y=392)
+            Label(window, text=f"Peso inicial: {w[0]}", font=('Comic Sans MS', 9, 'bold')).place(x=92, y=394)
+            Label(window, text=f"Peso final: \n{w[-1]}", font=('Comic Sans MS', 9, 'bold')).place(x=96, y=414)
+            Label(window, text=eta_value, font=('Comic Sans MS', 12, 'normal')).place(x=105, y=470)
+            Label(window, text=epochs, font=('Comic Sans MS', 12, 'normal')).place(x=198, y=470)
+            Label(window, text=tolerance, font=('Comic Sans MS', 12, 'normal')).place(x=315, y=470)
+            SecondWindow(window, e, w)
+        else:
+            Label(window, image=image_tk_incorrect).place(x=330, y=310)
     else:
         Label(window, image=image_tk_incorrect).place(x=330, y=310)
 
@@ -256,7 +269,8 @@ entry_3 = Entry(
     bd=0,
     bg="#EEEEEE",
     fg="#000716",
-    highlightthickness=0
+    highlightthickness=0,
+    font=('Comic Sans MS', 12, 'normal')
 )
 entry_3.place(
     x=340.0,
@@ -273,20 +287,6 @@ image_14 = canvas.create_image(
     image=image_image_14
 )
 
-image_image_15 = PhotoImage(
-    file=relative_to_assets("image_15.png"))
-image_15 = canvas.create_image(
-    113.0,
-    446.0,
-    image=image_image_15
-)
-
-image_image_16 = PhotoImage(
-    file=relative_to_assets("image_16.png"))
-image_16 = canvas.create_image(
-    120.0,
-    474.0,
-    image=image_image_16
-)
-window.resizable(False, False)
-window.mainloop()
+if __name__ == '__main__':
+    window.resizable(False, False)
+    window.mainloop()

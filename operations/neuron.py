@@ -7,7 +7,8 @@ def open_csv(csv_path, tolerance, eta, iterations):
 
     with open(csv_path, newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter=';', quotechar='|')
-        matrix = np.array([row for row in reader]).astype(float)
+        pre_matrix = np.array([row for row in reader]).astype(float)
+        matrix = np.insert(pre_matrix, 0, 1, axis=1)
         yd = np.array(matrix[:, -1]).reshape(-1, 1).astype(int)
         norm_e_by_iterations = []
         w_by_iterations = []
@@ -19,7 +20,8 @@ def open_csv(csv_path, tolerance, eta, iterations):
             yc = activation_function(u)
             e = obtain_error(yd, yc)
             delta_w = calculate_delta_w(int(eta), e, matrix)
-            norm_e_by_iterations.append(obtain_norm_e(e))
+            norm_e = obtain_norm_e(e)
+            norm_e_by_iterations.append(norm_e)
             w = update_w(w, delta_w)
             w_by_iterations.append(w)
 
@@ -28,16 +30,12 @@ def open_csv(csv_path, tolerance, eta, iterations):
 
 
 def initialize_w(matrix):
-    w = []
-    for _ in range(matrix.shape[1] - 1):
-        w.append([random.random()])
-
-    return np.array(w)
+    return np.random.random((1, matrix.shape[1] - 1))
 
 
 def get_u(w, matrix):
     x = matrix[:, :(matrix.shape[1] - 1)]
-    return np.dot(x, w)
+    return np.dot(x, w.T)
 
 
 def activation_function(u):
@@ -45,7 +43,7 @@ def activation_function(u):
 
 
 def obtain_error(yd, yc):
-    return yd - yc
+    return yc - yd
 
 
 def obtain_norm_e(e):
