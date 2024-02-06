@@ -178,7 +178,7 @@ def do_operations():
         epochs = entry_2.get() if entry_2.get() != '' else 0
         if (float(eta_value) > 0) and (float(epochs) > 0):
             Label(window, image=image_tk_correct).place(x=330, y=305)
-            tolerance = entry_1.get() if entry_1.get() != '' else 0
+            tolerance = entry_1.get() if entry_1.get() != '' else False
             w, e = start(csv_route, entry_1.get(), entry_3.get(), entry_2.get())
             w = [[round(value, 4) for value in sub_w[0]] for sub_w in w]
             Label(window, image=image_tk_results).place(x=86, y=392)

@@ -24,6 +24,9 @@ def open_csv(csv_path, tolerance, eta, iterations):
             norm_e_by_iterations.append(norm_e)
             w = update_w(w, delta_w)
             w_by_iterations.append(w)
+            if tolerance:
+                if norm_e <= float(tolerance):
+                    break
 
         print("Hecho")
         return w_by_iterations, norm_e_by_iterations
