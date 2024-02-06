@@ -1,5 +1,5 @@
 from pathlib import Path
-from tkinter import Tk, Canvas, Entry, Label, Button, PhotoImage, filedialog, Frame
+from tkinter import Tk, Canvas, Entry, Label, Button, PhotoImage, filedialog
 from PIL import Image, ImageTk
 from operations.neuron import open_csv as start
 from results import SecondWindow

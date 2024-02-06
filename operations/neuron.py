@@ -1,5 +1,4 @@
 import csv
-import random
 import numpy as np
 
 

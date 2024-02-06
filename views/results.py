@@ -1,7 +1,7 @@
 import os
 import random
 from pathlib import Path
-from tkinter import Tk, Canvas, PhotoImage, Label, Toplevel
+from tkinter import Canvas, PhotoImage, Label, Toplevel
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -95,6 +95,6 @@ class SecondWindow(Toplevel):
         filename2 = os.path.join(output_folder, 'weight_evolution.png')
         fig2.savefig(filename2)
         self.img_label2 = Label(self)
-        self.img_label2.image = PhotoImage(file = filename2)
+        self.img_label2.image = PhotoImage(file=filename2)
         self.img_label2.config(image=self.img_label2.image)
         self.img_label2.place(x=619, y=90)
